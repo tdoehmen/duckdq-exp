@@ -1,0 +1,13 @@
+version: '3'
+
+# Run as
+# docker-compose build; docker-compose up 
+
+services:
+  
+  eval_a:
+    entrypoint: "true"
+      
+  eval_b:
+    working_dir: /home/jovyan/work
+    entrypoint: python /home/jovyan/eval_b_script.py

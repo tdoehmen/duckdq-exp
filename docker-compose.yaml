@@ -1,0 +1,58 @@
+version: '3'
+
+# Run as
+# docker-compose build; docker-compose up 
+
+services:
+  
+  eval_a:
+    build:
+      context: .
+      dockerfile: Dockerfile_A
+    command: start-notebook.sh --NotebookApp.token=''
+    volumes:
+      - ./work_A/:/home/jovyan/work/
+      #- ./data/:/home/jovyan/data/
+    ports:
+      - "8890:8888"
+    networks:
+            mysql_net:
+                ipv4_address: 172.28.0.3  
+
+  mysql_db:
+    image: mysql:8.0
+    environment:   # Set up mysql database name and password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    logging:
+      driver: "none"
+    networks:
+            mysql_net:
+                ipv4_address: 172.28.0.2
+    expose:
+      - "3306"
+      
+  eval_b:
+    build:
+      context: .
+      dockerfile: Dockerfile_B
+    command: start-notebook.sh --NotebookApp.token=''
+    volumes:
+      - ./work_B/:/home/jovyan/work/
+      #- ./data/:/home/jovyan/data/
+    depends_on:
+      - mysql_db
+    networks:
+            mysql_net:
+                ipv4_address: 172.28.0.4
+    ports:
+      - "8891:8888"
+
+networks:
+    mysql_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
