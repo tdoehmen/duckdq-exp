@@ -18,11 +18,11 @@ In Windows PowerShell: > .\eval_interactive.ps1
 
 In Linux/OSX shell: > .\eval_interactive.sh
 
-For Experiments in Group A: Open Chrome/Firefox/Safari, go to: http://localhost:8890/notebooks/work/eval_a.ipynb
+Because the experiments require different environments, they are split up into two groups:
 
-For Experiments in Group B: Open Chrome/Firefox/Safari, go to: http://localhost:8891/notebooks/work/eval_b.ipynb
+For experiments in group A: Open Chrome/Firefox/Safari, go to: http://localhost:8890/notebooks/work/eval_a.ipynb
 
-(Because the experiments require different environment, they are split up into two groups.)
+For experiments in group B: Open Chrome/Firefox/Safari, go to: http://localhost:8891/notebooks/work/eval_b.ipynb
 
 ## Dataset
 
