@@ -1,0 +1,6 @@
+numpy
+pandas
+great_expectations
+hooqu 
+matplotlib 
+ 

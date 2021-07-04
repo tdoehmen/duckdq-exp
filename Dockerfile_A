@@ -1,9 +1,0 @@
-FROM jupyter/pyspark-notebook:spark-2
-
-RUN pip install git+https://github.com/tdoehmen/duckdq.git
-RUN pip install great_expectations findspark pyspark pydeequ hooqu 
-
-COPY work_A/eval_a.ipynb /home/jovyan/eval_a_script.ipynb
-ADD data/hotel_search_logs_3M_small.tar.gz /home/jovyan/data/
-RUN jupyter nbconvert --to script /home/jovyan/eval_a_script.ipynb
-RUN rm /home/jovyan/eval_a_script.ipynb
